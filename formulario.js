@@ -1,31 +1,29 @@
-var formulario = document.querySelector("#form")
+var formulario = document.querySelector(".formulario")//se cambia a clase pues estaba como id
 
 formulario.onsubmit = function(e) {
 
-  e.prevent();
+  e.preventDefault();//preventDefault
   
-  var n = formulario.elements[0]
-  var e = formulario.elements[1]
-  var na = formulario.elements[2]
+  var nombreInput = formulario.elements[0]//cambio nombre de variables por unas más reconocibles
+  var edadInput = formulario.elements[1]
+  var nacionalidadInput = formulario.elements[2]
 
-  var nombre = n.value
-  var edad = e.value
+  var nombre = nombreInput.value
+  var edad = edadInput.value
 
-  var i = na.selectedIndex
-  var nacionalidad = na.options[i].value
-  console.log(nombre, edad)
-  console.log(nacionalidad)
+  var i = nacionalidadInput.selectedIndex
+  var nacionalidad = nacionalidadInput.options[i].value
+  //console.log(nombre, edad)
+  //console.log(nacionalidad) se comentaron estos console log
 
   if (nombre.length === 0) {
-    n.classList.add("error")
+    nombreInput.classList.add("error")
   }
   if (edad < 18 || edad > 120) {
-    e.classList.add("error")
+    edadInput.classList.add("error")
   }
 
-if (nombre.length > 0 
-  && (edad > 18 
-    && edad < 120) ) {
+if (nombre.length > 0 && (edad > 18 && edad < 120) ) {
   agregarInvitado(nombre, edad, nacionalidad)
   }
 }
@@ -55,17 +53,10 @@ function agregarInvitado(nombre, edad, nacionalidad) {
 var lista = document.getElementById("lista-de-invitados")
 
 var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+elementoLista.classList.add("elemento-lista") //se cambia el "added" por add
 lista.appendChild(elementoLista)
 
-var spanNombre = document.createElement("span")
-var inputNombre = document.createElement("input")
-var espacio = document.createElement("br")
-spanNombre.textContent = "Nombre: "
-inputNombre.value = nombre 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
+//Se elimina toda la función repetida
 
 function crearElemento(descripcion, valor) {
 var spanNombre = document.createElement("span")
@@ -95,3 +86,4 @@ elementoLista.appendChild(botonBorrar);
 botonBorrar.parentNode.remove()
   }
 }
+// que cochinero era este codigo :c
